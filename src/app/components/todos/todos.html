@@ -1,0 +1,35 @@
+<div class="todo-container">
+    <!-- Input Field to Add Todo -->
+    <mat-form-field appearance="fill" class="todo-input">
+      <mat-label>Enter a TODO and press enterk</mat-label>
+      <input matInput #input />
+        <mat-icon matSuffix> edit</mat-icon>
+    </mat-form-field>
+  
+    <!-- Filter Toggle -->
+    <mat-button-toggle-group #filter class="todo-filters" appearance="legacy">
+      <mat-button-toggle value="all">All</mat-button-toggle>
+      <mat-button-toggle value="pending">Pending</mat-button-toggle>
+      <mat-button-toggle value="completed">Completed</mat-button-toggle>
+    </mat-button-toggle-group>
+  
+    <!-- Todo List -->
+
+    <mat-selection-list>
+
+    @for(todo of store.todos(); track todo.id ; let index= $index){
+       
+        <mat-list-item >
+            <mat-checkbox >
+              {{ todo.title }}
+            </mat-checkbox>
+            <button mat-icon-button color="warn" >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+       
+    }
+   
+</mat-selection-list>
+  </div>
+  

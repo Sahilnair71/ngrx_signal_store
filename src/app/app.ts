@@ -1,10 +1,11 @@
 import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Todos } from './components/todos/todos';
 import { TodoStore } from './store/toddo.store';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,Todos],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
