@@ -1,1 +1,12 @@
-<app-todos></app-todos>
+<div>
+  @if(!store.loading()){
+    <app-todos></app-todos>
+   
+  }
+  @else {
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+  }
+</div>
+

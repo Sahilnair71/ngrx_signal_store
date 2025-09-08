@@ -2,7 +2,7 @@
     <!-- Input Field to Add Todo -->
     <mat-form-field appearance="fill" class="todo-input">
       <mat-label>Enter a TODO and press enterk</mat-label>
-      <input matInput #input />
+      <input matInput #input (keydown.enter)="onAddClicked(input.value)" />
         <mat-icon matSuffix> edit</mat-icon>
     </mat-form-field>
   
@@ -15,21 +15,24 @@
   
     <!-- Todo List -->
 
-    <mat-selection-list>
-
+    @if(!store.loading()){
     @for(todo of store.todos(); track todo.id ; let index= $index){
        
-        <mat-list-item >
-            <mat-checkbox >
-              {{ todo.title }}
-            </mat-checkbox>
-            <button mat-icon-button color="warn" >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-list-item>
-       
+            <div class="todo-item">
+                <mat-checkbox >
+                  {{ todo.title }}
+                </mat-checkbox>
+                <button mat-icon-button color="warn" >
+                  <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        
     }
+}
+@else
+{
+    <mat-spinner></mat-spinner>
+}
    
-</mat-selection-list>
   </div>
   

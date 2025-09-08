@@ -9,6 +9,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { TodoStore } from '../../store/toddo.store';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 @Component({
@@ -25,9 +27,14 @@ import { TodoStore } from '../../store/toddo.store';
     MatButtonToggleModule,
     MatListModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ]
 })
 export class Todos {
   store = inject(TodoStore);
+
+  onAddClicked(title:string){
+    this.store.addData(title)
+  }
 }
