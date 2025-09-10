@@ -19,8 +19,8 @@
     @for(todo of store.todos(); track todo.id ; let index= $index){
        
             <div class="todo-item">
-                <mat-checkbox >
-                  {{ todo.title }}
+                <mat-checkbox (change)="onUpdate(todo.id, $event.checked)"[checked]="todo.completed">
+                    <span [class.completed]="todo.completed">{{ todo.title }}</span>
                 </mat-checkbox>
                 <button mat-icon-button color="warn"  (click)="onDeleteClicked(todo.id)">
                   <mat-icon >delete</mat-icon>

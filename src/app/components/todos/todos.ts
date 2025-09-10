@@ -40,4 +40,7 @@ export class Todos {
   onDeleteClicked(id:string){
     this.store.deleteData(id)
   }
+  onUpdate(id:string,completed:boolean){
+    this.store.updateData(id,completed)
+  }
 }

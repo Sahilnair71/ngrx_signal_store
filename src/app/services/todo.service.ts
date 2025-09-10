@@ -21,7 +21,10 @@ export class TodoService {
   async deleteData(id:string){
     await sleep(1000)
   }
-
+  async updateTodo(id:string, completed:boolean){
+    await sleep(1000)
+  }
+    
 
 }
 
