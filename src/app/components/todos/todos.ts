@@ -37,4 +37,7 @@ export class Todos {
   onAddClicked(title:string){
     this.store.addData(title)
   }
+  onDeleteClicked(id:string){
+    this.store.deleteData(id)
+  }
 }

@@ -22,8 +22,8 @@
                 <mat-checkbox >
                   {{ todo.title }}
                 </mat-checkbox>
-                <button mat-icon-button color="warn" >
-                  <mat-icon>delete</mat-icon>
+                <button mat-icon-button color="warn"  (click)="onDeleteClicked(todo.id)">
+                  <mat-icon >delete</mat-icon>
                 </button>
             </div>
         

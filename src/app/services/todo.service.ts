@@ -18,6 +18,10 @@ export class TodoService {
     ...todo
    } as Todo
   }
+  async deleteData(id:string){
+    await sleep(1000)
+  }
+
 
 }
 
