@@ -1,7 +1,7 @@
 import { type } from "os";
 import { Todo } from "../model/todo.model"
-import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
-import{inject} from '@angular/core'
+import { signalStore, withState, withMethods, patchState ,withComputed} from '@ngrx/signals';
+import{inject,computed} from '@angular/core'
 import { TodoService } from "../services/todo.service";
 
 export type TodosFilter = "all" | "pending" | "completed"
@@ -16,7 +16,7 @@ type TodoState ={
 const initialState : TodoState={
     todos: [],
     loading: false,
-    filter: "all"
+    filter: "pending"
 }
 
 export const TodoStore= signalStore(
@@ -42,20 +42,39 @@ export const TodoStore= signalStore(
             },
 
             async deleteData(id:string){
-                await todoService.deleteData(id)
-
+                todoService.deleteData(id)
                 patchState(store, (state)=>({
                     todos: state.todos.filter((todo)=> todo.id !=id)
                 }))
             },
             async updateData(id:string, completed:boolean){
-                await todoService.updateTodo(id,completed)
+                todoService.updateTodo(id,completed)
                 patchState(store, (state)=>({
                     todos:state.todos.map((todo) => todo.id ==id ? {...todo,completed }:todo)
                 }))
+            },
+            updateFilete(filter: TodosFilter){
+                patchState(store,{filter})
+
             }
         }
-    ))
+    )
+),
+    
+withComputed((state)=>({
+    filteredTodos: computed(() => {
+    const todo= state.todos()
+    switch(state.filter()){
+        case "completed":
+            return todo.filter(todos => todos.completed)
+        case "all":
+            return todo
+        case "pending":
+            return todo.filter(todos => !todos.completed)
+
+    }
+    })
+}))
 
 )
     
