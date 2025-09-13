@@ -5,18 +5,22 @@ import{inject,computed} from '@angular/core'
 import { TodoService } from "../services/todo.service";
 
 export type TodosFilter = "all" | "pending" | "completed"
+export type AppTheme = "light" | "dark";
+
 
 type TodoState ={
     todos: Todo[];
     loading: boolean;
     filter: TodosFilter;
+    theme: AppTheme
     
 }
 
 const initialState : TodoState={
     todos: [],
     loading: false,
-    filter: "pending"
+    filter: "pending",
+    theme:"light"
 }
 
 export const TodoStore= signalStore(
@@ -56,7 +60,12 @@ export const TodoStore= signalStore(
             updateFilete(filter: TodosFilter){
                 patchState(store,{filter})
 
-            }
+            },
+            toggleTheme() {
+                patchState(store, (state) => ({
+                  theme: (state.theme === "light" ? "dark" : "light") as AppTheme,
+                }));
+              },
         }
     )
 ),

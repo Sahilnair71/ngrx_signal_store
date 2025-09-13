@@ -10,6 +10,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { TodoStore } from '../../store/toddo.store';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 
 
@@ -29,7 +30,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatCheckboxModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatButtonToggleGroup
+    MatButtonToggleGroup,
+    MatSlideToggleModule
   ]
 })
 export class Todos {
@@ -40,6 +42,8 @@ export class Todos {
       const filter = this.filter();
       console.log(this.filter(),"filter")
       filter.value = this.store.filter()
+      const currentTheme = this.store.theme();
+      document.body.classList.toggle("dark-theme", currentTheme === "dark");
     })
   }
 
@@ -52,4 +56,8 @@ export class Todos {
   onUpdate(id:string,completed:boolean){
     this.store.updateData(id,completed)
   }
+  onToggleTheme() {
+    this.store.toggleTheme();
+  }
+
 }

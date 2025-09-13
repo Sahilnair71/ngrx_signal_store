@@ -1,3 +1,8 @@
+<div class="theme-toggle-container">
+    <mat-slide-toggle [checked]="store.theme() === 'dark'" (change)="onToggleTheme()">
+        Dark Mode
+    </mat-slide-toggle>
+</div>
 <div class="todo-container">
     <!-- Input Field to Add Todo -->
     <mat-form-field appearance="fill" class="todo-input">

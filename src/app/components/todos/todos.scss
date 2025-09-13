@@ -57,3 +57,28 @@
     text-decoration: line-through;
   }
   
+
+  body.dark-theme {
+    background-color: #000000; /* Page background color becomes black */
+}
+
+body.dark-theme .todo-container {
+    background-color: #424242; /* Card background becomes a dark gray */
+    color: #ffffff; /* Text color becomes white for readability */
+}
+
+body.dark-theme .todo-item {
+    border-bottom: 1px solid #616161; /* Adjust the divider color for contrast */
+}
+
+body.dark-theme .completed {
+    color: #b0b0b0; /* Adjust the color of completed text */
+}
+
+/* Ensure other elements like inputs and icons also adapt */
+body.dark-theme mat-form-field.mat-focused .mat-form-field-label,
+body.dark-theme mat-form-field.mat-form-field-invalid .mat-form-field-label,
+body.dark-theme .mat-input-element,
+body.dark-theme mat-icon {
+    color: #ffffff;
+}
