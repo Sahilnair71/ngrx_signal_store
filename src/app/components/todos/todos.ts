@@ -38,6 +38,7 @@ export class Todos {
   constructor(){
     effect(()=> {
       const filter = this.filter();
+      console.log(this.filter(),"filter")
       filter.value = this.store.filter()
     })
   }

@@ -7,7 +7,7 @@
     </mat-form-field>
   
     <!-- Filter Toggle -->
-    <mat-button-toggle-group #filter class="todo-filters" appearance="legacy">
+    <mat-button-toggle-group #filter class="todo-filters" appearance="legacy" (change)="store.updateFilete($event.value)"> 
       <mat-button-toggle value="all">All</mat-button-toggle>
       <mat-button-toggle value="pending">Pending</mat-button-toggle>
       <mat-button-toggle value="completed">Completed</mat-button-toggle>
@@ -16,7 +16,7 @@
     <!-- Todo List -->
 
     @if(!store.loading()){
-    @for(todo of store.todos(); track todo.id ; let index= $index){
+    @for(todo of store.filteredTodos(); track todo.id ; let index= $index){
        
             <div class="todo-item">
                 <mat-checkbox (change)="onUpdate(todo.id, $event.checked)"[checked]="todo.completed">
